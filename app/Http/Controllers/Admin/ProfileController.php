@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Profile;
 class ProfileController extends Controller
 {
     public function add()
@@ -24,6 +24,8 @@ class ProfileController extends Controller
 
     public function update()
     {
+        $news->fill($form);
+        $news->save();
         return redirect('admin/profile/edit');
     }
 }

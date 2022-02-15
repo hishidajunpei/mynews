@@ -29,7 +29,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">性別</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
+                            <textarea class="form-control" name="body" rows="1">{{ old('body') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     {{ csrf_field() }}
-                    <input type="submit" class="btn btn-primary" value="自己紹介欄">
+                    <input type="submit" class="btn btn-primary" value="送信">
                 </form>
             </div>
         </div>
