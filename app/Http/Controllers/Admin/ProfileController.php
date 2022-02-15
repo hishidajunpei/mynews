@@ -14,6 +14,8 @@ class ProfileController extends Controller
 
     public function create()
     {
+        $profile->fill($form);
+        $profile->save();
         return redirect('admin/profile/create');
     }
 
@@ -24,8 +26,7 @@ class ProfileController extends Controller
 
     public function update()
     {
-        $news->fill($form);
-        $news->save();
+        
         return redirect('admin/profile/edit');
     }
 }
