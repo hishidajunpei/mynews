@@ -25,42 +25,44 @@ class ProfileController extends Controller
        
        return redirect('admin/profile/create');
     }
+    public function index(Request $request)
+    {
+      $cond_title = $request->cond_title;
+      if ($cond_title != '') {
+          $posts = Profile::where('name', $cond_title)->get();
+    } else {
+          $posts = Profile::all();
+      }
+      return view('admin.profile.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+    }
 
     public function edit(Request $request)
     {
-        $profile = Profile::find($request->id);
-        if (empty($profile)) {
-        abort(404);    
-      }
-        return view('admin.profile.edit', ['profile_form' => $profile]); 
-    }
-
-    public function update(Request $request)
-    {
-      $this->validate($request, Profile::$rules);
-      
       $profile = Profile::find($request->id);
-    
+      if (empty($profile)) {
+        abort(404);
+    }
+      return view('admin.profile.edit', ['profile_form' => $profile]);
+    }
+    public function update(Request $request)
+  {
+      $this->validate($request, Profile::$rules);
+      $profile = Plofile::find($request->id);
       $profile_form = $request->all();
-      unset($profile_form['_remove']);
-      unset($plofile_form['_token']);
+      
+      unset($news_form['remove']);
+      unset($news_form['_token']);
 
-      $plofile->fill($plofile_form)->save();
+      $profile->fill($profile_form)->save();
 
       return redirect('admin/profile');
-     }
-      public function delete(Request $request)
-    {
-      $plofile = Profile::find($request->id);
-      
-      $plofile->delete();
+  }
+   public function delete(Request $request)
+  {
+      $profile = Profile::find($request->id);
+      $profile->delete();
       return redirect('admin/profile/');
-    }  
+  }  
 
 
 }
-
-        
-        
-        
-
